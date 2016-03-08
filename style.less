@@ -4,16 +4,17 @@
 * color, string, boolean, multi­value
 */
 
-
 //Variables
 
-@color1: black; 			// named color value
-@color2: #00f;  			// hex code color value
-@stringVar:" with LESS";  	//string variable
-@fontSize: 24px;  			//numeric value
-@border: 2px solid @color1; //multi-value variable
-@padding: 15px;				//one-value variable
-
+@bodyTextColour: black; 			// named color value
+@titleColour: white;  			// hex code color value
+@stringVar:"This is a string within LESS.";  	//string variable
+@fontSize: 12px;  			//numeric value
+@border: 2px solid @bodyTextColour; //multi-value variable
+@padding: 5px 20px;			//one-value variable
+@gradient1: hsl(300, 100%, 50%);
+@gradient2: hsl(90, 100%, 50%);
+//@wowgradient: ['ellipse at center', red -100%, blue 200%];
 //Mixins
 
 .radius(@radius) {
@@ -24,3 +25,46 @@
   border-radius: @radius;
 }
 
+.headandfoot(){
+	border: @border;
+	.radius(10px);
+	padding: @padding;
+	text-align: center;
+}
+
+body{
+	padding: 0px 50px;
+	font-family: Arial;
+	margin-left: auto;
+	margin-right: auto;
+	//background-image: svg-gradient(to right, @wowgradient);
+}
+
+h1 {
+	font-size: @fontSize+15;
+	color: @titleColour;
+}
+
+p{
+	font-size: @fontSize;
+}
+
+
+
+header{
+	.headandfoot();
+	//background: linear-gradient( extract(@gradient1,1), extract(@gradient1,2) ); 
+	background: linear-gradient( @gradient1, darken(@gradient1, 20%) ); 
+	
+}
+
+footer{
+	.headandfoot();
+	background: linear-gradient( @gradient2, darken(@gradient2, 20%) ); 
+	/*&:after{
+		content: attr(data-language);
+	}*/
+	&:after{
+		content:@stringVar attr(data-note); 
+	}
+}
