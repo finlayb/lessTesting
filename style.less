@@ -14,6 +14,8 @@
 @padding: 5px 20px;			//one-value variable
 @gradient1: hsl(300, 100%, 50%);
 @gradient2: hsl(90, 100%, 50%);
+@gradient3: hsl(150, 100%, 50%);
+@gradient4: hsl(360, 100%, 50%);
 //@wowgradient: ['ellipse at center', red -100%, blue 200%];
 //Mixins
 
@@ -49,13 +51,17 @@ p{
 	font-size: @fontSize;
 }
 
-
+.when-small({
+	p,footer:after{
+		font-size: @fontSize*1.5;
+	}
+});
 
 header{
 	.headandfoot();
 	//background: linear-gradient( extract(@gradient1,1), extract(@gradient1,2) ); 
 	background: linear-gradient( @gradient1, darken(@gradient1, 20%) ); 
-	
+	.when-small-gradient(@gradient3);
 }
 
 footer{
@@ -64,7 +70,22 @@ footer{
 	/*&:after{
 		content: attr(data-language);
 	}*/
+	.when-small-gradient(@gradient4);
 	&:after{
+		font-size: @fontSize;
 		content:@stringVar attr(data-note); 
 	}
 }
+
+
+.when-small-gradient(@thegradient){
+	.when-small({background: linear-gradient( @thegradient, darken(@thegradient, 20%) );})
+}
+
+.when-small(@rules){
+	@media only screen and (max-width: 1024px) {
+		@rules();
+	}
+}
+
+

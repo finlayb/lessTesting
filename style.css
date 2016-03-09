@@ -16,6 +16,12 @@ h1 {
 p {
   font-size: 12px;
 }
+@media only screen and (max-width: 1024px) {
+  p,
+  footer:after {
+    font-size: 18px;
+  }
+}
 header {
   border: 2px solid black;
   -webkit-border-radius: 10px;
@@ -26,6 +32,11 @@ header {
   padding: 5px 20px;
   text-align: center;
   background: linear-gradient(#ff00ff, #990099);
+}
+@media only screen and (max-width: 1024px) {
+  header {
+    background: linear-gradient(#00ff80, #00994d);
+  }
 }
 footer {
   border: 2px solid black;
@@ -41,6 +52,12 @@ footer {
 		content: attr(data-language);
 	}*/
 }
+@media only screen and (max-width: 1024px) {
+  footer {
+    background: linear-gradient(#ff0000, #990000);
+  }
+}
 footer:after {
+  font-size: 12px;
   content: "This is a string within LESS." attr(data-note);
 }
